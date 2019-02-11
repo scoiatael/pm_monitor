@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": ".",
+			"name": "pm_monitor"
+		}
+	],
+	"settings": {
+		"terminal.integrated.env.osx": {
+			"PATH": "/Users/lukaszczaplinski/.platformio/penv/bin:/Users/lukaszczaplinski/.platformio/penv:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Wireshark.app/Contents/MacOS",
+			"PLATFORMIO_CALLER": "vscode"
+		}
+	}
+}
