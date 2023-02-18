@@ -2,15 +2,16 @@
 #include "Seeed_BME280.h"
 
 BME280 bme280;
-
-#define SDA 4
-#define SCL 5
+bool bme280_init = false;
 
 void setup() {
-  Wire.begin(SDA);
-  Wire.setClock(SCL);
   Serial.begin(9600);
-  bme280.init();
+  pinMode(2, OUTPUT);
+  pinMode(16, OUTPUT);
+  Wire.begin(5);
+  Wire.setClock(4);
+  digitalWrite(2, LOW);
+  digitalWrite(16, LOW);
 }
 
 struct sensorReading {
@@ -47,6 +48,16 @@ void serialDump(sensorReading reading) {
 }
 
 void loop() {
-  serialDump(getReading(bme280));
+  Serial.print("loop. Ready? ");
+  Serial.println(bme280_init);
+  digitalWrite(2, LOW);
+  digitalWrite(16, LOW);
+  if (!bme280_init) {
+    digitalWrite(2, HIGH);
+    bme280_init = bme280.init();
+  } else {
+    digitalWrite(16, HIGH);
+    serialDump(getReading(bme280));
+  }
   delay(1000);
 }
